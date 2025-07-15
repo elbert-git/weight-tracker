@@ -11,11 +11,6 @@ export default function Router() {
         setUser(loadUserState());
     }, []);
 
-    useEffect(() => {
-        console.log("user state", user);
-        console.log("logged in", loggedIn);
-    }, [user]);
-
     return loggedIn ? <Main></Main> : <LoginRoute></LoginRoute>;
 }
 
@@ -23,8 +18,8 @@ function isLoggedIn(user: string) {
     return user != null && user != "" && user != undefined;
 }
 
+export const localStorageKey = "weight-tracker";
 function loadUserState(): string {
-    const localStorageKey = "weight-tracker";
     try {
         const raw = localStorage.getItem(localStorageKey);
         return raw as string;
